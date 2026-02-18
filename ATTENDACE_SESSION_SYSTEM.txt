@@ -1,0 +1,94 @@
+WEEK 2 – ATTENDANCE SESSION SYSTEM (C++)
+
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+// ================= ATTENDANCE SESSION CLASS =================
+class AttendanceSession {
+private:
+    string date;
+    vector<int> presentStudents;
+
+public:
+    AttendanceSession(string sessionDate) {
+        date = sessionDate;
+    }
+
+    void markAttendance(int studentId) {
+        presentStudents.push_back(studentId);
+    }
+
+    void displaySession() const {
+        cout << "\nSession Date: " << date << endl;
+        cout << "Students Present: ";
+
+        if (presentStudents.empty()) {
+            cout << "None";
+        } else {
+            for (int id : presentStudents) {
+                cout << id << " ";
+            }
+        }
+
+        cout << endl;
+    }
+};
+
+// ================= MAIN FUNCTION =================
+int main() {
+    vector<AttendanceSession> sessions;
+    int choice;
+
+    do {
+        cout << "\n===== ATTENDANCE SYSTEM =====" << endl;
+        cout << "1. Create Lecture Session" << endl;
+        cout << "2. View All Sessions" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            string date;
+            cout << "Enter session date: ";
+            cin >> date;
+
+            AttendanceSession session(date);
+
+            char more;
+            do {
+                int studentId;
+                cout << "Enter Student ID present: ";
+                cin >> studentId;
+
+                session.markAttendance(studentId);
+
+                cout << "Add another student? (y/n): ";
+                cin >> more;
+
+            } while (more == 'y' || more == 'Y');
+
+            sessions.push_back(session);
+            cout << "Lecture session created successfully!\n";
+        }
+
+        else if (choice == 2) {
+            cout << "\n--- All Attendance Sessions ---\n";
+
+            if (sessions.empty()) {
+                cout << "No sessions created yet.\n";
+            } else {
+                for (const AttendanceSession& s : sessions) {
+                    s.displaySession();
+                }
+            }
+        }
+
+    } while (choice != 3);
+
+    cout << "Program exited.\n";
+    return 0;
+}
+
+
