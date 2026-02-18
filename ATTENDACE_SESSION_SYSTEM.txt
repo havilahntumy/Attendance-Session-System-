@@ -1,12 +1,9 @@
-WEEK 2 – ATTENDANCE SESSION SYSTEM (C++)
-
 #include <iostream>
 #include <vector>
 #include <string>
 using namespace std;
 
-// ================= ATTENDANCE SESSION CLASS =================
-class AttendanceSession {
+{
 private:
     string date;
     vector<int> presentStudents;
@@ -90,5 +87,6 @@ int main() {
     cout << "Program exited.\n";
     return 0;
 }
+
 
 
